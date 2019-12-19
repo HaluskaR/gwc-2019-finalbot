@@ -12,7 +12,18 @@ async def on_message(message):
     if message.author.bot:
         return
     else:
-        await message.channel.send("***{}***".format(random.choice(screeches)))
+        if random.randint(1, 10) == 5:
+            await message.channel.send("***{}***".format(random.choice(screeches)))
+    await bot.process_commands(message) 
+
+@bot.command(name="roll")
+async def roll(ctx, number=20):
+    """Roll an unmodified die, d20 by default."""
+    if number < 1:
+        await ctx.send("Number must be greater than 1.")
+        return
+    await ctx.send("{res}\n(Rolled {num}, got {res})".format(num=number,
+                                                             res=random.randint(1, number)))
 
 with open("secret.txt","r") as secret_file:
     bot.run(secret_file.readline()[:-1])
