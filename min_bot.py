@@ -24,6 +24,17 @@ async def roll(ctx, number=20):
         return
     await ctx.send("{res}\n(Rolled {num}, got {res})".format(num=number,
                                                              res=random.randint(1, number)))
+						 
+@bot.command(name="remindme")
+async def remindme(ctx, time_to_wait):
+    """Remind the user of something in x seconds."""
+    try:
+        time_to_wait = int(time_to_wait)
+    except ValueError:
+        await ctx.send("Must be a whole number!")
+        return
+    await sleep(time_to_wait)
+    await ctx.send("AAAAAAA")
 
 with open("secret.txt","r") as secret_file:
     bot.run(secret_file.readline()[:-1])
