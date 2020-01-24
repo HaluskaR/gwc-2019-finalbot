@@ -25,5 +25,12 @@ async def roll(ctx, number=20):
     await ctx.send("{res}\n(Rolled {num}, got {res})".format(num=number,
                                                              res=random.randint(1, number)))
 
+@bot.command(name="mandy")
+async def mandy(ctx, triggerword=None):
+    """Talk to Mandy!"""
+    if triggerword is not None:
+        await ctx.send("no")
+			 
+															 
 with open("secret.txt","r") as secret_file:
     bot.run(secret_file.readline()[:-1])
