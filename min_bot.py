@@ -16,6 +16,7 @@ async def on_message(message):
             await message.channel.send("***{}***".format(random.choice(screeches)))
     await bot.process_commands(message) 
 
+    
 @bot.command(name="roll")
 async def roll(ctx, number=20):
     """Roll an unmodified die, d20 by default."""
@@ -23,7 +24,28 @@ async def roll(ctx, number=20):
         await ctx.send("Number must be greater than 1.")
         return
     await ctx.send("{res}\n(Rolled {num}, got {res})".format(num=number,
-                                                             res=random.randint(1, number)))
+                                                             res=random.randint(1, number))
+
+                   
+@bot.command(name="remindme")
+async def remindme(ctx, time_to_wait):
+    """Remind the user of something in x seconds."""
+    try:
+        time_to_wait = int(time_to_wait)
+    except ValueError:
+        await ctx.send("Must be a whole number!")
+        return
+    await sleep(time_to_wait)
+    await ctx.send("AAAAAAA")
+
+
+@bot.command(name="mandy")
+async def mandy(ctx, triggerword=None):
+    """Talk to Mandy!"""
+    if triggerword is not None:
+        await ctx.send("no")
+
+
 @bot.command(name="yoda")
 async def yoda(ctx, i):
 	if "sad" in i or "bad" in i:
