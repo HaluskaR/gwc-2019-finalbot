@@ -26,7 +26,7 @@ async def roll(ctx, number=20):
                                                              res=random.randint(1, number)))
 
 @bot.command(name="swear")
-async def swear (ctx, prompt):
+async def swear(ctx, prompt):
 	sCount = 0
 	aCount = 0
 
